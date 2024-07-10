@@ -5,7 +5,7 @@ import ollama
 def get_embeddings(documents, collection):
     
     for i, d in enumerate(documents):
-        response = ollama.embeddings(model="llama2",
+        response = ollama.embeddings(model="mxbai-embed-large",
                                        prompt=d)
         
         collection.add(

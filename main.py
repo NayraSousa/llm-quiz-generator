@@ -1,6 +1,7 @@
 from loader_pdf import loader
 from splitter_txt import splitter
 from embeddings import get_embeddings
+from search import search_llm
 
 import chromadb
 
@@ -18,6 +19,8 @@ def run():
     text_split = splitter(text_load, CHUNK_SIZE, CHUNK_OVERLAP)
     
     get_embeddings(text_split, collection)
+    search_llm(collection)
+
     
 if __name__ == '__main__':
     run()
