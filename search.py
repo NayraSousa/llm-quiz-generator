@@ -1,7 +1,7 @@
 import ollama
 
 def search_llm(collection):
-    prompt = "O que é grafana?"
+    prompt = "O que é langchain?"
 
     response = ollama.embeddings(
         prompt=prompt,
@@ -10,10 +10,15 @@ def search_llm(collection):
 
     results = collection.query(
         query_embeddings=[response["embedding"]],
-        n_results=1
+        n_results=3,
+        where={"name": "book-langchain"}
     )
+    
+    distance = results['distances']
+    print(distance)
 
-    data = results['documents'][0][0]
+    data = results['documents']
+    print(data)
 
     output = ollama.generate(
         model="llama2",

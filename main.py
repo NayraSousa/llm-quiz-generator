@@ -16,9 +16,9 @@ def run():
     collection = client.get_or_create_collection(name="vector-langchain") 
 
     text_load = loader(PATH)
-    text_split = splitter(text_load, CHUNK_SIZE, CHUNK_OVERLAP)
+    text_split, metadata = splitter(text_load, CHUNK_SIZE, CHUNK_OVERLAP)
     
-    get_embeddings(text_split, collection)
+    collection = get_embeddings(text_split, collection, metadata)
     search_llm(collection)
 
     
